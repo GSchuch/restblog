@@ -6,18 +6,8 @@
 	require_once '../../config/Conexao.php';
 	require_once '../../models/Categoria.php';
 
-	
-    if(!isset($_SERVER['PHP_AUTH_USER'])){
-        header('WWW-Authenticate: Basic realm= "Página Restrita"');
-        header('HTTP/1.0 401 Unauthorized');
-        echo json_ecode(["mensagem"=>"Authenticacao necessária"]);
-        exit;
-    }elseif (!($_SERVER['PHP_AUTH_USER'] == 'admin' && $_SERVER['PHP_AUTH_PW'] == 'admin')){
-        header('HTTP/1.0 401 Unauthorized');
-        echo json_encode(["mensagem" => "Usuário invalido"]);
-    }else{
-    $db = new Conexao();
-    $con = $db->getConexao();
+	$db = new Conexao();
+	$con = $db->getConexao();
 
     $categoria = new Categoria($con);
 
@@ -32,6 +22,4 @@
         echo json_encode($resultado);
     }else{
         echo json_encode(array('mensagem' => 'nenhuma categoria encontrada'));
-    }
-
     }

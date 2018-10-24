@@ -19,25 +19,48 @@ class Post {
 	/* O método read() deverá efetuar uma consulta SQL na tabela categoria, e retornar o resultado */
 
 	public function create() {
-		$consulta = "INSERT INTO post(titulo, texto, id_categoria, autor) VALUES (:titulo, :texto, :id_categoria, :autor)";
+		$consulta = "INSERT INTO post (titulo, texto, id_categoria, autor) VALUES (:titulo, :texto, :id_categoria, :autor)";
 		$stmt = $this->conexao->prepare($consulta);
 		$stmt->bindParam('titulo', $this->titulo, PDO::PARAM_STR);
 		$stmt->bindParam('texto', $this->texto, PDO::PARAM_STR);
 		$stmt->bindParam('autor', $this->autor, PDO::PARAM_STR);
 		$stmt->bindParam('id_categoria', $this->id_categoria, PDO::PARAM_INT);
+		try{
+			$stmt->execute();
+			return true;
+		}catch(PDOException $e){
+			echo $e->getMessage();
+		}
+
+/*
 		if ($stmt->execute()) {
 			return "true";
 		} else {
 			return "false";
 		}
+		*/
 	}
 
 	public function read($id=null) {
 		if (!isset($id)) {
-			$consulta = "SELECT * FROM categoria ORDER BY nome";
+			$consulta = "SELECT * FROM post ORDER BY titulo";
 			$stmt = $this->conexao->prepare($consulta);
 		} else {
-			$consulta = "SELECT * FROM categoria WHERE id = :id";
+			$consulta = "SELECT * FROM post WHERE id = :id";
+			$stmt = $this->conexao->prepare($consulta);
+			$stmt = $this-> bindParam('id', $id);
+		}
+		$stmt->execute();
+		$resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $resultado;
+	}
+
+	public function readCat($id=null) {
+		if (!isset($id)) {
+			$consulta = "SELECT * FROM post ORDER BY titulo";
+			$stmt = $this->conexao->prepare($consulta);
+		} else {
+			$consulta = "SELECT * FROM post WHERE id = :id";
 			$stmt = $this->conexao->prepare($consulta);
 			$stmt = $this-> bindParam('id', $id);
 		}
@@ -47,18 +70,29 @@ class Post {
 	}
 
 	public function update() {
-		$consulta = "UPDATE categoria SET nome = :nome, descricao = :descricao WHERE id = :id";
+		$consulta = "UPDATE post SET titulo = :titulo, texto= :texto, autor = :autor WHERE id = :id";
 		$stmt = $this->conexao->prepare($consulta);
 		$stmt->bindParam('id', $this->id, PDO::PARAM_INT);
-		$stmt->bindParam('nome', $this->nome, PDO::PARAM_STR);
-		$stmt->bindParam('descricao', $this->descricao, PDO::PARAM_STR);
-		$stmt->execute();
+		$stmt->bindParam('titulo', $this->titulo, PDO::PARAM_STR);
+		$stmt->bindParam('texto', $this->texto, PDO::PARAM_STR);
+		$stmt->bindParam('autor', $this->autor, PDO::PARAM_STR);
+		if ($stmt->execute()) {
+			return "true";
+		} else {
+			return "false";
+		}
 	}
 
 	public function delete() {
-		$consulta = "DELETE FROM categoria WHERE id = :id";
+		$consulta = "DELETE FROM post WHERE id = :id";
 		$stmt = $this->conexao->prepare($consulta);
 		$stmt->bindParam('id', $this->id, PDO::PARAM_INT);
+		// try{
+		// 	$stmt->execute();
+		// 	return true;
+		// }catch(PDOException $e){
+		// 	echo $e->getMessage();
+		// }
 		if ($stmt->execute()) {
 			return "true";
 		} else {

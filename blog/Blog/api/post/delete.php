@@ -16,9 +16,9 @@
         $post->id = $dados->id;
 
         if($post->delete()) {
-        	$res = ['mensagem'=>'Post deletado'];
+        	$res = ['mensagem'=>'post deletado'];
         } else {
-        	$res = ['mensagem'=>'Erro na deletação de um Post'];
+        	$res = ['mensagem'=>'Erro na deletação da post'];
         }
     	echo json_encode($res);   
     }

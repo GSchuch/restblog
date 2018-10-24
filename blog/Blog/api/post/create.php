@@ -3,6 +3,7 @@
 	
 	require_once '../../config/Conexao.php';
 	require_once '../../models/Post.php';
+    
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
     	$db = new Conexao();
     	$con = $db->getConexao();
@@ -21,4 +22,4 @@
         	$res = array('Mensagem: ','Erro na criação da publicação');
         }
         echo json_encode($res);
-    }
+    } 
