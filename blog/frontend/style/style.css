@@ -1,0 +1,31 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0
+}
+
+.topo{
+    background-color: red;
+    height: 80px;
+    font-size: 65px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+.meio{
+	 background-color: black;
+    height: 90vh;
+    font-size: 65px;
+    display: flex;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+}
+
+.item-menu{
+    margin: 0.9em
+}
