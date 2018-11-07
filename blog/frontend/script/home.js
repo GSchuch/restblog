@@ -1,6 +1,12 @@
 barraCat = document.querySelector('.topo')
 inicio = document.querySelector('.inicio')
 meio = document.querySelector('.meio');
+const detalhes = document.querySelector('div.detalhes')
+const but = document.querySelector('button')
+
+but.addEventListener('click', function(){
+    detalhes.classList.add('open');
+})
 
 async function pegarDadosCategoria(){
 	let req = await fetch('../api/categoria/read.php', {

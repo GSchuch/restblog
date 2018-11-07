@@ -1,4 +1,5 @@
-*{
+* {
+    font-family: Ubuntu;
     box-sizing: border-box;
 }
 
@@ -8,24 +9,55 @@ body{
 }
 
 .topo{
-    background-color: red;
     height: 80px;
     font-size: 65px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    color: black;
 }
 .meio{
-	 background-color: black;
+	 background-color: white;
     height: 90vh;
     font-size: 65px;
     display: flex;
     align-items: center;
-    color: white;
+    color: black;
     flex-direction: column;
 }
 
 .item-menu{
     margin: 0.9em
+}
+
+button{
+background-color: rgb(57, 119, 219);
+border: 0px;
+border-radius: 100%;
+width: 4%;
+height: 100%;
+cursor: pointer;
+font-size: 65%;
+color: rgb(34, 26, 141)    
+}
+button:focus {
+    outline:0;
+}
+
+.detalhes {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 50vw;
+    background-color: rgb(67, 125, 219);
+    transform: translateX(100%);
+    transition: 500ms;
+    display:flex;
+    flex-direction: column !important;
+    justify-content: space-between;
+}
+
+.detalhes.open {
+    transform: translateX(0%);
 }
