@@ -2,7 +2,7 @@ barraCat = document.querySelector('.topo')
 inicio = document.querySelector('.inicio')
 meio = document.querySelector('.meio');
 const detalhes = document.querySelector('div.detalhes')
-const but = document.querySelector('button')
+const but = document.querySelector('.botao-menu')
 
 but.addEventListener('click', function(){
     detalhes.classList.add('open');
@@ -20,7 +20,7 @@ async function pegarDadosCategoria(){
         div.setAttribute('id',categoria.id)
         div.setAttribute('class', 'item-menu')
         div.innerText=(categoria.nome)
-        barraCat.appendChild(div)
+        detalhes.appendChild(div)
 
         //listener de cada um dos itens
  		div.addEventListener('click', async function(){            

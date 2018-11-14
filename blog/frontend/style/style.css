@@ -30,32 +30,34 @@ body{
     margin: 0.9em
 }
 
-button{
+.botao-menu{
 background-color: rgb(57, 119, 219);
 border: 0px;
 border-radius: 100%;
 width: 4%;
 height: 100%;
 cursor: pointer;
-font-size: 65%;
-color: rgb(34, 26, 141)    
+//font-size: 65%;
+color: rgb(34, 26, 141);    
+padding: 15px;
 }
 button:focus {
     outline:0;
 }
 
 .detalhes {
+    padding: 10px 10px;
     position: absolute;
     top: 0;
     bottom: 0;
-    right: 0;
-    width: 50vw;
+  //  left: -105%;
+    width: 20vw;
     background-color: rgb(67, 125, 219);
-    transform: translateX(100%);
+    transform: translateX(-100%);
     transition: 500ms;
     display:flex;
     flex-direction: column !important;
-    justify-content: space-between;
+  //  justify-content: space-between;
 }
 
 .detalhes.open {
